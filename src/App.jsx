@@ -20,18 +20,22 @@ function App() {
           {
             text: "Phone",
             correct: false,
+            help: true,
           },
           {
             text: "Watches",
             correct: true,
+            help: true,
           },
           {
             text: "Food",
             correct: false,
+            help: false,
           },
           {
             text: "Cosmetic",
             correct: false,
+            help: false,
           },
         ],
       },
@@ -103,10 +107,13 @@ function App() {
     []
   );
 
+  
+
     useEffect(() => {
       questionNumber > 1 &&
         setEarned(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
     }, [questionNumber, moneyPyramid]);
+  
 
   return (
     <div className="app">
@@ -121,10 +128,7 @@ function App() {
               <>
                 <div className="top">
                   <div className="timer">
-                    <Timer
-                      setStop={setStop}
-                      questionNumber={questionNumber}
-                    />
+                    <Timer setStop={setStop} questionNumber={questionNumber} />
                   </div>
                 </div>
                 <div className="bottom">

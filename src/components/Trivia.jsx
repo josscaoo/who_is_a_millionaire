@@ -16,6 +16,7 @@ export default function Trivia({
   const [letsPlay] = useSound(play);
   const [correctAnswer] = useSound(correct);
   const [wrongAnswer] = useSound(wrong);
+  const [answered, setAnswered] = useState(false);
 
   useEffect(() => {
     letsPlay();
@@ -23,6 +24,9 @@ export default function Trivia({
 
   useEffect(() => {
     setQuestion(data[questionNumber - 1]);
+    setSelectedAnswer(null);
+    setClassName("answer");
+    setAnswered(false);
   }, [data, questionNumber]);
 
   const delay = (duration, callback) => {
@@ -32,25 +36,39 @@ export default function Trivia({
   };
 
   const handleClick = (a) => {
-    setSelectedAnswer(a);
-    setClassName("answer active");
-    delay(3000, () => {
-      setClassName(a.correct ? "answer correct" : "answer wrong");
-      delay(2000, () => {
-        if (a.correct) {
-          correctAnswer();
-          delay(1000, () => {
-            setQuestionNumber((prev) => prev + 1);
-          });
-        } else {
-          wrongAnswer();
-          delay(1000, () => {
-            setStop(true);
-          });
-        }
+    if (!answered) {
+      setSelectedAnswer(a);
+      setClassName("answer active");
+      setAnswered(true);
+      delay(3000, () => {
+        setClassName(a.correct ? "answer correct" : "answer wrong");
+        delay(2000, () => {
+          if (a.correct) {
+            correctAnswer();
+            delay(1000, () => {
+              setQuestionNumber((prev) => prev + 1);
+            });
+          } else {
+            wrongAnswer();
+            delay(1000, () => {
+              setStop(true);
+            });
+          }
+        });
       });
-    });
+    }
   };
+
+const [skipped, setSkipped] = useState(false);
+
+const skipQuestion = () => {
+  if (!answered && !skipped) {
+    setSkipped(true);
+    setQuestionNumber((prev) => prev + 1);
+  }
+};
+
+
 
   return (
     <div className="trivia">
@@ -65,6 +83,7 @@ export default function Trivia({
           </div>
         ))}
       </div>
+      <button onClick={skipQuestion}>Bỏ qua</button>
     </div>
   );
 }
