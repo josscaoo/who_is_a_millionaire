@@ -14,72 +14,353 @@ function App() {
     const data = [
       {
         id: 1,
-        question:
-          "Rolex is a company that specializes in what type of product?",
+        question: "1 + 1",
         answers: [
           {
-            text: "Phone",
-            correct: false,
-            help: true,
-          },
-          {
-            text: "Watches",
-            correct: true,
-            help: true,
-          },
-          {
-            text: "Food",
-            correct: false,
-            help: false,
-          },
-          {
-            text: "Cosmetic",
-            correct: false,
-            help: false,
-          },
-        ],
-      },
-      {
-        id: 2,
-        question: "When did the website `Facebook` launch?",
-        answers: [
-          {
-            text: "2004",
+            text: "2",
             correct: true,
           },
           {
-            text: "2005",
+            text: "3",
             correct: false,
           },
           {
-            text: "2006",
+            text: "4",
             correct: false,
           },
           {
-            text: "2007",
+            text: "5",
             correct: false,
           },
         ],
       },
       {
-        id: 3,
-        question: "Who played the character of harry potter in movie?",
+        id: 1,
+        question: "1 + 1",
         answers: [
           {
-            text: "Johnny Deep",
-            correct: false,
-          },
-          {
-            text: "Leonardo Di Caprio",
-            correct: false,
-          },
-          {
-            text: "Denzel Washington",
-            correct: false,
-          },
-          {
-            text: "Daniel Red Cliff",
+            text: "2",
             correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 2",
+        answers: [
+          {
+            text: "2",
+            correct: false,
+          },
+          {
+            text: "3",
+            correct: true,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 3",
+        answers: [
+          {
+            text: "2",
+            correct: false,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: true,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 4",
+        answers: [
+          {
+            text: "2",
+            correct: false,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: true,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "2 - 1",
+        answers: [
+          {
+            text: "2",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "5 + 1",
+        answers: [
+          {
+            text: "6",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "6+2",
+        answers: [
+          {
+            text: "8",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 1",
+        answers: [
+          {
+            text: "2",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 1",
+        answers: [
+          {
+            text: "2",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 1",
+        answers: [
+          {
+            text: "2",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 1",
+        answers: [
+          {
+            text: "2",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 1",
+        answers: [
+          {
+            text: "2",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 1",
+        answers: [
+          {
+            text: "2",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 1",
+        answers: [
+          {
+            text: "2",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
+          },
+        ],
+      },
+      {
+        id: 1,
+        question: "1 + 1",
+        answers: [
+          {
+            text: "2",
+            correct: true,
+          },
+          {
+            text: "3",
+            correct: false,
+          },
+          {
+            text: "4",
+            correct: false,
+          },
+          {
+            text: "5",
+            correct: false,
           },
         ],
       },
