@@ -1,10 +1,14 @@
+import { useDispatch } from "react-redux";
+import { setUsername } from "../redux/userSlice";
 import { useRef } from "react";
 
-export default function Start({ setUsername }) {
+export default function Start({ setUsernameStart }) {
   const inputRef = useRef();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    inputRef.current.value && setUsername(inputRef.current.value);
+    inputRef.current.value && dispatch(setUsername(inputRef.current.value));
+    inputRef.current.value && setUsernameStart(inputRef.current.value);
   };
 
   return (
@@ -15,7 +19,7 @@ export default function Start({ setUsername }) {
         ref={inputRef}
       />
       <button className="startButton" onClick={handleClick}>
-       Bắt Đầu
+        Bắt Đầu
       </button>
     </div>
   );

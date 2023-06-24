@@ -1,419 +1,81 @@
-import { useEffect, useMemo, useState } from "react";
-import"./app.css"
+import { useEffect, useState } from "react";
+import "./app.css";
 import Trivia from "./components/Trivia";
 import Timer from "./components/Timer";
 import Start from "./components/Start";
+import { useSelector } from "react-redux";
+import QuizData from "./components/QuizData";
 
 function App() {
-  const [username, setUsername] = useState(null);
+  const [usernameStart, setUsernameStart] = useState(null);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
   const [earned, setEarned] = useState("$ 0");
+  const [finished, setFinished] = useState(false);
+  const [winner, setWinner] = useState(false); // Thêm state để kiểm tra chiến thắng
+  const username = useSelector((state) => state.user);
+  const { data, moneyPyramid } = QuizData();
 
+  useEffect(() => {
+    if (questionNumber > data.length) {
+      setFinished(true);
+      setWinner(true);
+    } else if (questionNumber > 1) {
+      setEarned(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
+    }
+  }, [questionNumber, moneyPyramid, data.length]);
 
-    const data = [
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 2",
-        answers: [
-          {
-            text: "2",
-            correct: false,
-          },
-          {
-            text: "3",
-            correct: true,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 3",
-        answers: [
-          {
-            text: "2",
-            correct: false,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: true,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 4",
-        answers: [
-          {
-            text: "2",
-            correct: false,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: true,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "2 - 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "5 + 1",
-        answers: [
-          {
-            text: "6",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "6+2",
-        answers: [
-          {
-            text: "8",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-      {
-        id: 1,
-        question: "1 + 1",
-        answers: [
-          {
-            text: "2",
-            correct: true,
-          },
-          {
-            text: "3",
-            correct: false,
-          },
-          {
-            text: "4",
-            correct: false,
-          },
-          {
-            text: "5",
-            correct: false,
-          },
-        ],
-      },
-    ];
-
-  const moneyPyramid = useMemo(
-    () =>
-      [
-        { id: 1, amount: "$ 100" },
-        { id: 2, amount: "$ 200" },
-        { id: 3, amount: "$ 300" },
-        { id: 4, amount: "$ 500" },
-        { id: 5, amount: "$ 1.000" },
-        { id: 6, amount: "$ 2.000" },
-        { id: 7, amount: "$ 4.000" },
-        { id: 8, amount: "$ 8.000" },
-        { id: 9, amount: "$ 16.000" },
-        { id: 10, amount: "$ 32.000" },
-        { id: 11, amount: "$ 64.000" },
-        { id: 12, amount: "$ 125.000" },
-        { id: 13, amount: "$ 250.000" },
-        { id: 14, amount: "$ 500.000" },
-        { id: 15, amount: "$ 1.000.000" },
-      ].reverse(),
-    []
-  );
-
-  
-
-    useEffect(() => {
-      questionNumber > 1 &&
-        setEarned(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
-    }, [questionNumber, moneyPyramid]);
-  
+  const handleRestart = () => {
+    setUsernameStart(null);
+    setQuestionNumber(1);
+    setStop(false);
+    setEarned("$ 0");
+    setFinished(false);
+    setWinner(false);
+  };
 
   return (
     <div className="app">
-      {!username ? (
-        <Start setUsername={setUsername} />
+      {!usernameStart ? (
+        <Start setUsernameStart={setUsernameStart} />
       ) : (
         <>
           <div className="main">
             {stop ? (
-              <h1 className="endText">aaaaa: {earned}</h1>
+              <>
+                <div className="endText">
+                  Cám ơn {username} đã đến với chương trình! <br />
+                  Số tiền thắng của bạn là: {earned}
+                  <h4 onClick={handleRestart} className="playNew">
+                    Chơi lại
+                  </h4>
+                </div>
+              </>
+            ) : finished ? (
+              <>
+                <div className={`endText ${winner ? "centerText" : ""}`}>
+                  Bạn đã chiến thắng!
+                  <p
+                    className={`endText ${winner ? "centerText" : ""}`}
+                    onClick={handleRestart}
+                  >
+                    Chơi lại
+                  </p>
+                </div>
+              </>
             ) : (
               <>
                 <div className="top">
+                  <div className="userName">
+                    người chơi:
+                    <span>{username}</span>
+                  </div>
+
                   <div className="timer">
                     <Timer setStop={setStop} questionNumber={questionNumber} />
                   </div>
                 </div>
                 <div className="bottom">
-                  {" "}
                   <Trivia
                     data={data}
                     questionNumber={questionNumber}
@@ -428,6 +90,7 @@ function App() {
             <ul className="moneyList">
               {moneyPyramid.map((m) => (
                 <li
+                  key={m.id}
                   className={
                     questionNumber === m.id
                       ? "moneyListItem active"
